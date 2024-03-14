@@ -18,7 +18,7 @@ export default async function handler(request, response) {
     ignoreHTTPSErrors: true,
   })
   const page = await browser.newPage()
-  await page.goto("https://vercel.com/")
+  await page.goto("https://srs-ssms.com/rekap_pdf/convert_taksasi_pdf_get.php?datetime=2024-03-14&estate=NBE")
   const title = await page.title()
 
   await page.close()
