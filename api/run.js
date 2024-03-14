@@ -15,12 +15,15 @@ module.exports = async function handler(request, response) {
     request.on('end', async () => {
       try {
         // Extract values of estate and datetime using regular expressions
-        const estateMatch = /name="estate"\r\n\r\n(.+?)\r\n/.exec(body);
-        const datetimeMatch = /name="datetime"\r\n\r\n(.+?)\r\n/.exec(body);
+        // const estateMatch = /name="estate"\r\n\r\n(.+?)\r\n/.exec(body);
+        // const datetimeMatch = /name="datetime"\r\n\r\n(.+?)\r\n/.exec(body);
 
-        // Extract estate and datetime from the matches
-        const estate = estateMatch ? estateMatch[1] : null;
-        const datetime = datetimeMatch ? datetimeMatch[1] : null;
+        // // Extract estate and datetime from the matches
+        // const estate = estateMatch ? estateMatch[1] : null;
+        // const datetime = datetimeMatch ? datetimeMatch[1] : null;
+
+        const est = request.body.estate
+        const date = request.body.datetime
 
         // Respond with a JSON object containing the received data
         const browser = await puppeteer.launch({
@@ -37,7 +40,7 @@ module.exports = async function handler(request, response) {
           ignoreHTTPSErrors: true,
         });
         const page = await browser.newPage();
-        await page.goto(`https://srs-ssms.com/rekap_pdf/convert_taksasi_pdf_get.php?datetime=${datetime}&estate=${estate}`);
+        await page.goto(`https://srs-ssms.com/rekap_pdf/convert_taksasi_pdf_get.php?datetime=${date}&estate=${est}`);
         const title = await page.title();
 
         // Delay for 5 seconds before closing the page
