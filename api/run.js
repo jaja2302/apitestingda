@@ -37,7 +37,7 @@ module.exports = async function handler(request, response) {
           ignoreHTTPSErrors: true,
         });
         const page = await browser.newPage();
-        await page.goto(`https://srs-ssms.com/rekap_pdf/convert_taksasi_pdf_get.php?estate=${estate}`);
+        await page.goto(`https://srs-ssms.com/rekap_pdf/convert_taksasi_pdf_get.php?datetime=${datetime}&estate=${estate}`);
         const title = await page.title();
 
         // Delay for 5 seconds before closing the page
